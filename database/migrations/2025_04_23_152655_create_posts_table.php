@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('category_id')->constrained();
+            $table->foreignId('gallery_id')->constrained();
+            $table->string('title');
+            $table->text('description');
+            $table->boolean('is_publish')->default(false);// 0 fordraf 1 for published
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('posts');
     }
 };
