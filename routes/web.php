@@ -15,10 +15,9 @@ use App\Http\Controllers\Auth\DashboardController;
 */
 
 Route::get('/', function () {
-    auth()->logout();
     return 'home page';
 });
 
 Auth::routes();
 
-Route::get('auth/dashboard', [DashboardController::class, 'dashboard'])->name('auth.dashboard');
+Route::get('auth/dashboard', [DashboardController::class, 'dashboard'])->name('auth.dashboard')->middleware('auth');
