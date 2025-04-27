@@ -46,38 +46,40 @@
                       @csrf
                       <div class="form-group">
                         <label for="exampleInputName1">Title</label>
-                        <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title">
+                        <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title" value="{{ old('title') }}" required>
                       </div>
                       <div class="form-group">
                         <label>Category</label>
-                        <select name="category" class="form-control">
+                        <select name="category" class="form-control" required>
                           <option disabled selected>Choose Option</option>
                           {{-- Verificando se tem alguma categoria --}}
                           @if (count($categories) > 0)
                           {{-- Percorrendo o array de categorias --}}
                             @foreach ($categories as $category)
                               {{-- Preenchendo o array no Blade --}}
-                              <option value="{{ $category->id }}">{{ $category->name }}</option>
+                              <option @selected( old('category') == $category->id) value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                           @endif
                         </select>
-                      </div>
+                      </div> 
                       <div class="form-group">
                         <label>Published</label>
-                        <select name="is_publish" class="form-control">
+                        <select name="is_publish" class="form-control" required>
                           <option disabled selected>Choose Option</option>
-                          <option value="1">Publish</option>
-                          <option value="0">Draft</option>
+                          {{-- Verificando se foi selecionado --}}
+                          <option @selected(old('is_publish') === 1) value="1">Publish</option>
+                          <option @selected(old('is_publish') === 0) value="0">Draft</option>
                         </select>
                       </div>
                       <div class="form-group">
                         <label>File upload</label>
-                        <input type="file" name="file" class="form-control">
+                        <input type="file" name="file" class="form-control" required>
                       </div>
 
                       <div class="form-group">
                         <label>Description</label>
-                        <textarea id="summernote" name="description" class="form-control" cols="30" rows="10"></textarea>
+                        <textarea id="summernote" name="description" class="form-control" cols="30" rows="10" required>
+                          {{ old('description') }}</textarea>
                       </div>
 
                       <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
