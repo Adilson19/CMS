@@ -38,6 +38,14 @@
                         <label>Category</label>
                         <select name="category" class="form-control">
                           <option disabled selected>Choose Option</option>
+                          {{-- Verificando se tem alguma categoria --}}
+                          @if (count($categories) > 0)
+                          {{-- Percorrendo o array de categorias --}}
+                            @foreach ($categories as $category)
+                              {{-- Preenchendo o array no Blade --}}
+                              <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                          @endif
                         </select>
                       </div>
                       <div class="form-group">
