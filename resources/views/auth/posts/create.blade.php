@@ -28,8 +28,20 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Create Post</h4>
+                    {{-- Alerta de erro  --}}
+                    @if ($errors-> any())
+                      <div class="alert alert-danger">
+                        <ul>
+                          @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                          @endforeach
+                        </ul>
+                      </div>
+                    @endif
+
                     
-                    <form class="forms-sample">
+                    <form method="post" action="{{ route('posts.store') }}" class="forms-sample">
+                      @csrf
                       <div class="form-group">
                         <label for="exampleInputName1">Title</label>
                         <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title">

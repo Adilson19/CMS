@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
+
 class PostController extends Controller
 {
     /**
@@ -40,6 +41,10 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'title' => ['required', 'min:2', 'max:255']
+        ]);
+        return $request->all();
     }
 
     /**
