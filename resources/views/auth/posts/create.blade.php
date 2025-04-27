@@ -1,5 +1,13 @@
 @extends('layouts.auth')
 
+
+@section('title', 'Create Post')
+
+@section('styles')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@endsection
+
 @section('content')
 
         <!-- partial -->
@@ -27,7 +35,7 @@
                         <input type="text" name="title" class="form-control" id="exampleInputName1" placeholder="Title">
                       </div>
                       <div class="form-group">
-                        <label>Categories</label>
+                        <label>Category</label>
                         <select name="category" class="form-control">
                           <option disabled selected>Choose Option</option>
                         </select>
@@ -42,18 +50,12 @@
                       </div>
                       <div class="form-group">
                         <label>File upload</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                          <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                          </span>
-                        </div>
+                        <input type="file" name="file" class="form-control">
                       </div>
 
                       <div class="form-group">
                         <label>Description</label>
-                        <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
+                        <textarea id="summernote" name="description" class="form-control" cols="30" rows="10"></textarea>
                       </div>
 
                       <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
@@ -63,4 +65,14 @@
               </div>
             </div>
           </div>
+@endsection
+
+@section('scripts')
+<script src='https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js'></script>
+<script>
+  $(document).ready(function() {
+    $('#summernote').summernote();
+  });
+</script>
+
 @endsection

@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>@yield('title')</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/auth/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/auth/vendors/css/vendor.bundle.base.css')}}">
@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="{{ asset('assets/auth/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/auth/images/favicon.ico')}}" />
+
+    @yield('styles')
+
   </head>
   <body>
     <div class="container-scroller">
@@ -303,6 +306,8 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('assets/auth/js/dashboard.js')}}"></script>
     <script src="{{ asset('assets/auth/js/todolist.js')}}"></script>
+
+    @yield('scripts') 
 
     <script>
       $(document).ready(function(){
