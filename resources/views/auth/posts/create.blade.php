@@ -40,7 +40,9 @@
                     @endif
 
                     
-                    <form method="post" action="{{ route('posts.store') }}" class="forms-sample">
+                    <form method="post" action="{{ route('posts.store') }}" class="forms-sample" enctype="multipart/form-data">
+                      {{-- O CSRF é um token de segurança que protege o formulário contra ataques CSRF (Cross-Site Request Forgery) --}}
+                      {{-- O Laravel gera automaticamente um token CSRF para cada sessão de usuário --}}
                       @csrf
                       <div class="form-group">
                         <label for="exampleInputName1">Title</label>

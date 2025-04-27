@@ -42,7 +42,11 @@ class PostController extends Controller
     {
         //
         $request->validate([
-            'title' => ['required', 'min:2', 'max:255']
+            'title' => ['required', 'min:2', 'max:20', 'string'],
+            'category' => ['required'],
+            'is_published' => ['required'],
+            'file'=>['required', 'image', 'dimensions:width=498, height=504'],
+            'description' => ['required', 'min:10', 'max:5000','string']
         ]);
         return $request->all();
     }
