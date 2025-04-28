@@ -47,17 +47,15 @@
                       @foreach ($posts as $post)
                         <tr>
                           <td class="py-1">
-                            <img src="{{ $post->gallery }}" style="width: 90px" alt="image" />
+                            <img src="{{ $post->gallery->image }}" style="width: 90px" alt="image" />
                           </td>
                           <td> {{ $post->title }} </td>
-                          <td>
-                            {{ Str::limit($post->description, 15, '...') }}</div>
-                          </td>
+                          <td>{!! Str::limit($post->description, 15, '...') !!}</td>
                           <td> {{ $post->category->name }} </td>
                           <td> {{ $post->is_publish == 1 ? 'Published' : 'Draft'}}</td>
                           <td>
 
-                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-success"> <i class="fas fa-eye"></i> </a>
+                            <a href="" class="btn btn-sm btn-success"> <i class="fas fa-eye"></i> </a>
                             <a href="" class="btn btn-sm btn-info"> <i class="fas fa-edit"></i> </a>
                             <a href="" class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i> </a>
 
