@@ -7,8 +7,7 @@ use App\Http\Requests\Auth\Post\CreateRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
-
-
+use App\Models\Gallery;
 class PostController extends Controller
 {
     /**
@@ -42,23 +41,36 @@ class PostController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        // pegando o arquivo
-        if($file = $request->has('file')){
+        try{
+            // Gravando o arquivo
+        // Verificando se o arquivo foi enviado
+        if($request->has('file')){
             // Pegando o arquivo
             $file = $request->file;
             // Pegando o nome original do arquivo
             $fileName = time(). $file->getClientOriginalName();
+            // Variavel para o caminho da imagem
+            $imagePath = public_path('images/posts');
+            // Armazenando o arquivo
+            $file -> move($imagePath, $fileName);
 
-            dd($fileName);
+            $gallery = Gallery::create([
+                'image' => $fileName
+            ]);
         }
-        /*
+        
         Post::create([
             'category_id' => $request->category,
             'is_publish' => $request->is_publish,
             'title' => $request->title,
-            'description' => $request->description
-        ]);*/
-        //return $request->all();
+            'description' => $request->description,
+            'gallery_id' => $gallery->id
+        ]);
+        }
+        catch(\Exception $ex){
+            dd($ex->getMessage());
+        }
+        return 'success';
     }
 
     /**
