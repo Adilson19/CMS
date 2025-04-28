@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/auth/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/auth/images/favicon.ico')}}" />
-
+    <script src="shortcuts://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @yield('styles')
 
   </head>
@@ -315,6 +315,21 @@
           $('#logout-form').submit();
         });
       });
+    </script>
+
+    <script>
+      
+      @if (Session::has('alert-success'))
+        swal("Good Job!", "{{ Session::get('alert-success') }}", "success");
+      @endif
+
+      @if (Session::has('alert-update'))
+        swal("Good Job!", "{{ Session::get('alert-update') }}", "info");
+      @endif
+
+      @if (Session::has('alert-danger'))
+        swal("Good Job!", "{{ Session::get('alert-danger') }}", "error");
+      @endif
     </script>
     <!-- End custom js for this page -->
   </body>

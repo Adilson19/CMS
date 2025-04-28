@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Gallery;
+use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.posts.index');
         
     }
 
@@ -41,10 +42,13 @@ class PostController extends Controller
      */
     public function store(CreateRequest $request)
     {
+        // Validando os dados
         try{
+            // Iniciando a transação                            
+            DB::beginTransaction();
             // Gravando o arquivo
-        // Verificando se o arquivo foi enviado
-        if($request->has('file')){
+            // Verificando se o arquivo foi enviado 
+            if($request->has('file')){  
             // Pegando o arquivo
             $file = $request->file;
             // Pegando o nome original do arquivo
@@ -58,7 +62,7 @@ class PostController extends Controller
                 'image' => $fileName
             ]);
         }
-        
+        // Criando o post
         Post::create([
             'category_id' => $request->category,
             'is_publish' => $request->is_publish,
@@ -66,11 +70,18 @@ class PostController extends Controller
             'description' => $request->description,
             'gallery_id' => $gallery->id
         ]);
+            DB::commit();
         }
+        // Caso ocorra algum erro, desfaz as transações
         catch(\Exception $ex){
+            DB::rollBack();
             dd($ex->getMessage());
         }
-        return 'success';
+        // alerta de criacao de post
+        $request -> session()->flash('alert-success', 'Post Created Successfully');
+        // Volta ao index
+        return to_route('posts.index');
+        //return 'success';
     }
 
     /**
