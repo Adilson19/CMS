@@ -1,5 +1,10 @@
 @extends('layouts.auth')
 
+@section('styles')
+{{-- Link que nos possibilita ter acesso a diversos itens de design da internet para o nosso site --}}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+@endsection
+
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -18,6 +23,9 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+
+                    {{-- Condicional do Numero de posts --}}
+                    @if (count($posts) > 0 )
                   <h4 class="card-title">Posts</h4>
                   </p>
                   <table class="table table-striped">
@@ -25,27 +33,40 @@
                       <tr>
                         <th> Image </th>
                         <th> Title </th>
+                        <th>Category</th>
                         <th> Description </th>
                         <th> Status </th>
                         <th> Action </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="py-1">
-                          <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
-                        </td>
-                        <td> Herman Beck </td>
-                        <td>
-                          <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td> $ 77.99 </td>
-                        <td> May 15, 2015 </td>
-                      </tr>
+                      @foreach ($posts as $post)
+                        <tr>
+                          <td class="py-1">
+                            <img src="{{ $post->gallery->image }}" style="width: 90px" alt="image" />
+                          </td>
+                          <td> {{ $post->title }} </td>
+                          <td>
+                            {{ Str::limit($post->description, 15, '...') }}</div>
+                          </td>
+                          <td> {{ $post->category->name }} </td>
+                          <td> {{ $post->is_publish == 1 ? 'Published' : 'Draft'}}</td>
+                          <td>
+
+                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-success"> <i class="fas fa-eye"></i> </a>
+                            <a href="" class="btn btn-sm btn-info"> <i class="fas fa-edit"></i> </a>
+                            <a href="" class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i> </a>
+
+                          </td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
+
+                  @else
+                   <h3 class="text-center text-danger">No posts found </h3>
+                  @endif
+
                 </div>
               </div>
             </div>

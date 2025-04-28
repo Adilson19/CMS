@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Gallery;
 use Illuminate\Support\Facades\DB;
+
 class PostController extends Controller
 {
     /**
@@ -19,8 +20,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with(['gallery', 'category'])->get();
-        return $posts;
-        return view('auth.posts.index');
+        //  Para retornar em JSON
+        //return $posts;
+        return view('auth.posts.index', ['posts' => $posts]);
         
     }
 
