@@ -3,6 +3,8 @@
 @section('styles')
 {{-- Link que nos possibilita ter acesso a diversos itens de design da internet para o nosso site --}}
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+  {{--  Para tratar os dados --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 @endsection
 
 @section('content')
@@ -28,7 +30,9 @@
                     @if (count($posts) > 0 )
                   <h4 class="card-title">Posts</h4>
                   </p>
-                  <table class="table table-striped">
+
+
+                  <table id="posts-table" class="table table-striped">
                     <thead>
                       <tr>
                         <th> Image </th>
@@ -43,7 +47,7 @@
                       @foreach ($posts as $post)
                         <tr>
                           <td class="py-1">
-                            <img src="{{ $post->gallery->image }}" style="width: 90px" alt="image" />
+                            <img src="{{ $post->gallery }}" style="width: 90px" alt="image" />
                           </td>
                           <td> {{ $post->title }} </td>
                           <td>
@@ -73,4 +77,14 @@
             
           </div>
         </div>
+@endsection
+{{-- Para colocar os dados na tabela rolante --}}
+@section('scripts')
+  <script rel="stylesheet" type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+  <script>
+    $(document).ready(function()
+    {
+      $('#posts-table').DataTable();
+    });
+  </script>
 @endsection
