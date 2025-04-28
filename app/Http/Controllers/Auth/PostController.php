@@ -18,6 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
+        $posts = Post::with(['gallery', 'category'])->get();
+        return $posts;
         return view('auth.posts.index');
         
     }
@@ -31,7 +33,7 @@ class PostController extends Controller
     {
         //
         $categories = Category::all();
-        return view('auth.posts.create', ['categories' => $categories]);
+        return view('auth.posts.create', [ 'categories' => $categories ]);
     }
 
     /**

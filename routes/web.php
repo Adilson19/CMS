@@ -24,3 +24,4 @@ Auth::routes();
 Route::get('auth/dashboard', [DashboardController::class, 'dashboard'])->name('auth.dashboard')->middleware('auth');
 
 Route::resource('auth/posts', PostController::class)->name('index', 'auth.posts.index');
+Route::resource('auth/posts', PostController::class)->name('index', 'posts.index');
