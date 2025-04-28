@@ -42,8 +42,14 @@ class PostController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        if($file= $request->has('file')){
-            dd($file);
+        // pegando o arquivo
+        if($file = $request->has('file')){
+            // Pegando o arquivo
+            $file = $request->file;
+            // Pegando o nome original do arquivo
+            $fileName = time(). $file->getClientOriginalName();
+
+            dd($fileName);
         }
         /*
         Post::create([

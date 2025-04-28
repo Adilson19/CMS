@@ -26,7 +26,7 @@ class CreateRequest extends FormRequest
         return [
             'title' => ['required', 'min:2', 'max:80', 'string'],
             'category' => ['required'],
-            'is_published' => ['required'],
+            'is_publish' => ['required'],
             'file'=>['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'dimensions:min_width=225, min_height=225'],
             'description' => ['required', 'min:10', 'max:5000','string']
         ];

@@ -67,8 +67,8 @@
                         <select name="is_publish" class="form-control" required>
                           <option disabled selected>Choose Option</option>
                           {{-- Verificando se foi selecionado --}}
-                          <option @selected(old('is_publish') === 1) value="1">Publish</option>
-                          <option @selected(old('is_publish') === 0) value="0">Draft</option>
+                          <option @selected(old('is_publish') == 1) value="1">Publish</option>
+                          <option @selected(old('is_publish') == 0) value="0">Draft</option>
                         </select>
                       </div>
                       <div class="form-group">
