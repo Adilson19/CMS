@@ -10,7 +10,7 @@ class WebsiteController extends Controller
     //
     public function home()
     {
-        $posts = Post::where('is_publish', Post::Published)->get();
+        $posts = Post::where('is_publish', Post::Published)->simplePaginate(1);
         return view('website.blog.index', ['posts' => $posts]);
     }
 

@@ -23,7 +23,7 @@
                   <div class="post">
                   <div class="post-media post-thumb">
                     <a href="blog-single.html">
-                      <img src="{{ $post->gallery->image }}" style="width: 70%">
+                      <img src="{{ $post->gallery->image }}" style="width:100%;">
                     </a>
                   </div>
                   <h3 class="post-title"><a href="#">{{ $post->title }}</a></h3>
@@ -45,15 +45,16 @@
                   </div>
                 @endforeach
   
-  <nav aria-label="Page navigation example">
-    <ul class="pagination post-pagination">
-      <li class="page-item"><a class="page-link" href="blog-grid.html">Prev</a></li>
-      <li class="page-item"><a class="page-link" href="blog-grid.html">1</a></li>
-      <li class="page-item"><a class="page-link" href="blog-grid.html">2</a></li>
-      <li class="page-item"><a class="page-link" href="blog-grid.html">3</a></li>
-      <li class="page-item"><a class="page-link" href="blog-grid.html">Next</a></li>
-    </ul>
-  </nav>
+                {{--<nav aria-label="Page navigation example">
+                  <ul class="pagination post-pagination">
+                    <li class="page-item"><a class="page-link" href="blog-grid.html">Prev</a></li>
+                    <li class="page-item"><a class="page-link" href="blog-grid.html">1</a></li>
+                    <li class="page-item"><a class="page-link" href="blog-grid.html">2</a></li>
+                    <li class="page-item"><a class="page-link" href="blog-grid.html">3</a></li>
+                    <li class="page-item"><a class="page-link" href="blog-grid.html">Next</a></li>
+                  </ul>
+                </nav>--}}
+                {{ $posts->links() }}
                   </div>
                   <div class="col-lg-4">
                       <div class="pl-0 pl-xl-4">

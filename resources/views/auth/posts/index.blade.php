@@ -47,7 +47,7 @@
                       @foreach ($posts as $post)
                         <tr>
                           <td class="py-1">
-                            <img src="{{ $post->gallery->image }}" style="width: 90px" alt="image" />
+                            <img src="{{ $post->gallery->image }}" style="width: 70px; height: 70%;" alt="image" />
                           </td>
                           <td> {{ $post->title }} </td>
                           <td>{!! Str::limit($post->description, 15, '...') !!}</td>
