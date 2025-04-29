@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\PostController;
+use App\Http\Controllers\WebsiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +16,10 @@ use App\Http\Controllers\Auth\PostController;
 |
 */
 
-Route::get('/', function () {
-    return 'home page';
-});
+Route::get('/', [WebsiteController::class, 'home'])->name('home');
 
 Auth::routes();
 
 Route::get('auth/dashboard', [DashboardController::class, 'dashboard'])->name('auth.dashboard')->middleware('auth');
 
-Route::resource('auth/posts', PostController::class)->name('index', 'auth.posts.index');
-Route::resource('auth/posts', PostController::class)->name('index', 'posts.index');
+Route::resource('auth/posts', PostController::class);
