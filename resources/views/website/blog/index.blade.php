@@ -22,7 +22,7 @@
                 @foreach ($posts as $post)
                   <div class="post">
                   <div class="post-media post-thumb">
-                    <a href="blog-single.html">
+                    <a href="{{ route('website.posts.show', $post->id) }}">
                       <img src="{{ $post->gallery->image }}" style="width:100%;">
                     </a>
                   </div>
@@ -53,7 +53,7 @@
                     <li class="page-item"><a class="page-link" href="blog-grid.html">3</a></li>
                     <li class="page-item"><a class="page-link" href="blog-grid.html">Next</a></li>
                   </ul>
-                </nav>--}}
+                </nav>--}} 
                 {{ $posts->links() }}
                   </div>
                   <div class="col-lg-4">
@@ -62,79 +62,38 @@
       <!-- Widget Latest Posts -->
       <div class="widget widget-latest-post">
           <h4 class="widget-title">Latest Posts</h4>
-          <div class="media">
-              <a class="pull-left" href="blog-single.html">
-                  <img class="media-object" src="{{ asset('assets/website/images/blog/post-thumb.jpg') }}" alt="Image">
-              </a>
-              <div class="media-body">
-                  <h4 class="media-heading"><a href="blog-single.html">Introducing Swift for Mac</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, officia.</p>
-              </div>
-          </div>
-          <div class="media">
-              <a class="pull-left" href="blog-single.html">
-                  <img class="media-object" src="{{ asset('assets/website/images/blog/post-thumb-2.jpg') }}" alt="Image">
-              </a>
-              <div class="media-body">
-                  <h4 class="media-heading"><a href="blog-single.html">Welcome to Themefisher Family</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, officia.</p>
-              </div>
-          </div>
-          <div class="media">
-              <a class="pull-left" href="blog-single.html">
-                  <img class="media-object" src="{{ asset('assets/website/images/blog/post-thumb-3.jpg') }}" alt="Image">
-              </a>
-              <div class="media-body">
-                  <h4 class="media-heading"><a href="blog-single.html">Warm welcome from swift</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, officia.</p>
-              </div>
-          </div>
-          <div class="media">
-              <a class="pull-left" href="blog-single.html">
-                  <img class="media-object" src="{{ asset('assets/website/images/blog/post-thumb-4.jpg') }}" alt="Image">
-              </a>
-              <div class="media-body">
-                  <h4 class="media-heading"><a href="blog-single.html">Introducing Swift for Mac</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, officia.</p>
-              </div>
-          </div>
+          
+            @if (count ($latestPost) > 0)
+                  @foreach ($latestPost as $post)
+                  <div class="media">
+                      <a class="pull-left" href="{{ route('website.posts.show', $post->id) }}">
+                          <img class="media-object" src="{{ $post->gallery->image }}" style="width:50px" alt="Image">
+                      </a> 
+                      <div class="media-body">
+                        <h4 class="media-heading"><a href="{{ route('website.posts.show',  $post->id) }}">{{ $post->title }}</a></h4>
+                        <p>{!! Str::limit($post->description, 25) !!}</p>
+                      </div>
+                  </div>
+                  @endforeach
+            @else
+            <h6 class="text-center text-danger">No post added yet</h6>
+            @endif
       </div>
       <!-- End Latest Posts -->
   
       <!-- Widget Category -->
       <div class="widget widget-category">
           <h4 class="widget-title">Categories</h4>
+          @if (count($categories) > 0)
           <ul class="widget-category-list">
-              <li><a href="blog-grid.html">Animals</a>
-              </li>
-              <li><a href="blog-grid.html">Landscape</a>
-              </li>
-              <li><a href="blog-grid.html">Portrait</a>
-              </li>
-              <li><a href="blog-grid.html">Wild Life</a>
-              </li>
-              <li><a href="blog-grid.html">Video</a>
-              </li>
+            @foreach ($categories as $category)          
+              <li><a href="blog-grid.html">{{ $category->name }}</a></li>
+            @endforeach
           </ul>
+          @else
+            <h6 class="text-center text-danger" style="text-decoration: none">No category added yet</h6>
+          @endif
       </div> <!-- End category  -->
-  
-      <!-- Widget tag -->
-      <div class="widget widget-tag">
-          <h4 class="widget-title">Tag Cloud</h4>
-          <ul class="widget-tag-list">
-              <li><a href="blog-grid.html">Animals</a>
-              </li>
-              <li><a href="blog-grid.html">Landscape</a>
-              </li>
-              <li><a href="blog-grid.html">Portrait</a>
-              </li>
-              <li><a href="blog-grid.html">Wild Life</a>
-              </li>
-              <li><a href="blog-grid.html">Video</a>
-              </li>
-          </ul>
-      </div> <!-- End tag  -->
-  
   </aside>
                       </div>
                   </div>
