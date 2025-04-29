@@ -33,17 +33,14 @@
                         <i class="ion-calendar"></i> {{ date('d M Y', strtotime($post->created_at)) }}
                       </li>
                       <li>
-                        <a href="#"><i class="ion-pricetags"></i>{{ $post->category->name }}</a>
+                        <a href="#"><i class="ion-pricetags"></i> {{ $post->category->name }} </a>
                       </li>
                 
                     </ul>
                   </div>
                   <div class="post-content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit vitae placeat ad architecto nostrum asperiores
-                      vel aperiam, veniam eum nulla. Maxime cum magnam, adipisci architecto quibusdam cumque veniam fugiat quae. Lorem
-                      ipsum dolor sit amet, consectetur adipisicing elit. Odio vitae ab doloremque accusamus sit, eos dolorum officiis a
-                      perspiciatis aliquid. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, facere. </p>
-                    <a href="blog-single.html" class="btn btn-main">Continue Reading</a>
+                    <p>{!! Str::limit($post->description, 200) !!}</p>
+                    <a href="{{ route('website.posts.show', $post->id) }}" class="btn btn-main">Continue Reading</a>
                   </div>
                   </div>
                 @endforeach

@@ -201,17 +201,17 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
                 <span class="menu-title">Posts</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                <i class="mdi mdi-medical-bag menu-icon"></i>
               </a>
-              <div class="collapse" id="ui-basic">
+              <div class="collapse" id="general-pages">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ route('posts.create') }}">Create Post</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ route('posts.index') }}">Posts</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('posts.create') }}"> Create Post </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('posts.index') }}"> Posts </a></li>
                 </ul>
-              </div>  
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/icons/mdi.html">

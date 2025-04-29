@@ -17,6 +17,7 @@ use App\Http\Controllers\WebsiteController;
 */
 
 Route::get('/', [WebsiteController::class, 'home'])->name('home');
+Route::get('/posts/{post}', [WebsiteController::class, 'show'])->name('website.posts.show');
 
 Auth::routes();
 

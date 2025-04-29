@@ -13,4 +13,9 @@ class WebsiteController extends Controller
         $posts = Post::where('is_publish', Post::Published)->get();
         return view('website.blog.index', ['posts' => $posts]);
     }
+
+    public function show(Post $post)
+    {
+        return view('website.blog.single',['post' => $post]);
+    }
 }
