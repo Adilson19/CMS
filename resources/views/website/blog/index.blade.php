@@ -63,8 +63,8 @@
       <div class="widget widget-latest-post">
           <h4 class="widget-title">Latest Posts</h4>
           
-            @if (count ($latestPost) > 0)
-                  @foreach ($latestPost as $post)
+            @if (count ($latestPosts) > 0)
+                  @foreach ($latestPosts as $post)
                   <div class="media">
                       <a class="pull-left" href="{{ route('website.posts.show', $post->id) }}">
                           <img class="media-object" src="{{ $post->gallery->image }}" style="width:50px" alt="Image">
@@ -85,11 +85,12 @@
       <div class="widget widget-category">
           <h4 class="widget-title">Categories</h4>
           @if (count($categories) > 0)
-          <ul class="widget-category-list">
-            @foreach ($categories as $category)          
+          <ul>
+            @foreach ($categories as $category)
               <li><a href="blog-grid.html">{{ $category->name }}</a></li>
-            @endforeach
+            @endforeach ($categoriess as $category)
           </ul>
+            @endfor
           @else
             <h6 class="text-center text-danger" style="text-decoration: none">No category added yet</h6>
           @endif
