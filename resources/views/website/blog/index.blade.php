@@ -18,7 +18,10 @@
       <div class="container">
           <div class="row">
               <div class="col-lg-8">
-                      
+
+                @if (count($posts) > 0)
+                  
+                
                 @foreach ($posts as $post)
                   <div class="post">
                   <div class="post-media post-thumb">
@@ -44,6 +47,9 @@
                   </div>
                   </div>
                 @endforeach
+                @else 
+                <h2 class="text-center text-danger mt-5">No post added yet</h2>
+                @endif
   
                 {{--<nav aria-label="Page navigation example">
                   <ul class="pagination post-pagination">
