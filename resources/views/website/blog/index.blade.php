@@ -91,12 +91,11 @@
       <div class="widget widget-category">
           <h4 class="widget-title">Categories</h4>
           @if (count($categories) > 0)
-          <ul>
+          <ul class="widget-category-list">
             @foreach ($categories as $category)
               <li><a href="blog-grid.html">{{ $category->name }}</a></li>
-            @endforeach ($categoriess as $category)
+            @endforeach
           </ul>
-            @endfor
           @else
             <h6 class="text-center text-danger" style="text-decoration: none">No category added yet</h6>
           @endif
