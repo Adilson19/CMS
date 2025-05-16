@@ -15,12 +15,17 @@ use App\Http\Controllers\WebsiteController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [WebsiteController::class, 'home'])->name('home');
-Route::get('/posts/{post}', [WebsiteController::class, 'show'])->name('website.posts.show');
+Route::view('contact-us', 'website.contact')->name('contact');
+Route::controller(WebsiteController::class)->group(function(){
+    Route::get('/', 'home')->name('home');
+    Route::get('/posts/{post}', 'show')->name('website.posts.show');
+});
 
 Auth::routes();
 
-Route::get('auth/dashboard', [DashboardController::class, 'dashboard'])->name('auth.dashboard')->middleware('auth');
+Route::prefix('auth')->middleware('auth')->group(function(){
+    Route::get('auth/dashboard', [DashboardController::class, 'dashboard'])->name('auth.dashboard')->middleware('auth');
+    Route::resource('auth/posts', PostController::class);
+});
 
-Route::resource('auth/posts', PostController::class);
+
